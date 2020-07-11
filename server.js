@@ -1,14 +1,15 @@
 const express = require('express');
-
 const app = express();
+const PORT = process.env.PORT || 4000;
 
-
+// Set Engine
+app.set('view engine', 'ejs');
 //------------Routers-------------//
 
 app.get('/', (req, res) => {
-	res.send('Q&A Project');
+	res.render('index');
 })
 
 //-------------Server Listener------//
 
-app.listen(4000, () => console.log('Server runnin on port 4000'));
+app.listen(PORT, () => console.log(`Server running of port ${PORT}`));
