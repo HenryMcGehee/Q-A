@@ -37,11 +37,32 @@ router.get('/:id', (req, res) => {
 
          res.render('questions/show', {
             questions: foundQuestion
-         })   
-    })
+         });
+    });
 });
 
+router.get('/:id/edit', (req, res) => {
+    db.Question.findById(req.params.id, (err, foundQuestion) => {
+        if (err) return console.log(err);
 
+        res.render('questions/edit', {
+            questions: foundQuestion,
+        });
+    });
+});
+
+router.put('/:id', (req, res) => {
+    db.Question.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new: true},
+        (err, updatedQuestion) => {
+            if(err) return console.log(err);
+
+            res.redirect('/questions');
+        }
+        )
+})
 
 
 
