@@ -6,12 +6,17 @@
 </head>
 <body>
 	
-	<h1>Welcome to Q&A</h1>
-	<a href="/questions/new"><button>New Question</button></a>
-	<a href="/questions">
-	<button>Answer A Question</button>
-	</a>
+	<h1>What is your question</h1>
 
+	<form action="/questions" method="POST">
+		<label for="user">Username</label>
+		<input type="text" id="user" name="user" />
+
+		<label for="question">question</label>
+		<input type="text" id="question" name="question" />
+
+		<button type="submit">Add question</button>
+	</form>
 
 
 </body>

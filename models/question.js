@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const QuestionSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        // required: true,
     },
     question: {
         type: String,
-        require: true,
+        // require: true,
     },
 }, {timestamps: true});
 

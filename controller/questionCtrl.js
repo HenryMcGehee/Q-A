@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../models');
+const { Question } = require('../models');
 const router = express.Router();
 
 
@@ -13,21 +14,35 @@ router.get('/', (req, res) =>{
     });
 });
 
-module.exports = router;
 
 // Create new Question
-router.get('questions/new', (req, res) => {
-	res.render('questions/new')
+router.get('/new', (req, res) => {
+    res.render('questions/new')
 });
 
 
-// router.post('/new', (req, res) => {
-// 	db.Question.create(req.body, (err, neqQuestion) => {
-// 		if (err) return console.log(err)
+router.post('/', (req, res) => {
+    db.Question.create(req.body, (err, newQuestion) => {
+        if (err) return console.log(err)
 
-// 		console.log(neqQuestion);
-		
+        res.redirect('/questions');
+    });
+});
+        
+        
 
-// 	})
-// })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = router;
