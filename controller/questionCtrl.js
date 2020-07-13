@@ -30,7 +30,16 @@ router.post('/', (req, res) => {
 });
         
         
+// Show page
+router.get('/:id', (req, res) => {
+    db.Question.findById(req.params.id, (err, foundQuestion) => {
+        if (err) console.log(err)
 
+         res.render('questions/show', {
+            questions: foundQuestion
+         })   
+    })
+});
 
 
 
