@@ -62,10 +62,19 @@ router.put('/:id', (req, res) => {
             res.redirect('/questions');
         }
         )
+});
+
+
+// Delete
+router.delete('/:id', (req, res) => {
+    db.Question.findByIdAndDelete(
+        req.params.id, (err, deletedQuestion) => {
+            if (err) return console.log(err)
+
+            console.log(deletedQuestion);
+            res.redirect('/questions')    
+        })
 })
-
-
-
 
 
 
