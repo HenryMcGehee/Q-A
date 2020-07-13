@@ -7,8 +7,12 @@ const QuestionSchema = new mongoose.Schema({
     },
     question: {
         type: String,
-        // require: true,
+        require: true,
     },
+    answer: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Answer'
+    }]
 }, {timestamps: true});
 
 const Question = mongoose.model('Question', QuestionSchema);

@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../models');
-const { Question } = require('../models');
+
+// const { Question } = require('../models');
 const router = express.Router();
 
 
@@ -32,13 +33,15 @@ router.post('/', (req, res) => {
         
 // Show page
 router.get('/:id', (req, res) => {
-    db.Question.findById(req.params.id, (err, foundQuestion) => {
+    db.Question.findById(req.params.id)
+        .populate({path: 'answer'})
+        .exec((err, foundQuestion) => {
         if (err) console.log(err)
 
          res.render('questions/show', {
-            questions: foundQuestion
+            questions: foundQuestion,
          });
-    });
+    })
 });
 
 router.get('/:id/edit', (req, res) => {

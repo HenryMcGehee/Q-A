@@ -33,5 +33,22 @@
 	<!-- 	Delete -->
 	<form style="display: inline-block;" method="POST" action= "/questions/<%= questions._id%>?_method=DELETE" ><button type = "submit">Delete</button></form>
 
+	<% for(let i = 0; i < questions.answer.length; i++){ %>
+		<li><%=questions.answer[i].answer%></li>	
+	<% } %>
+
+	<form action="/questions/<%=questions._id%>" method="POST">
+		<label for="username">username</label>
+		<input type="text" id="username" name="username" />
+
+		<label for="answer">answer</label>
+		<input type="text" id="answer" name="answer" />
+
+		<button type="submit">Add Answer</button>
+
+	</form>
+
+
+
 </body>
 </html>

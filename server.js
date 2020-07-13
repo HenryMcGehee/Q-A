@@ -22,6 +22,8 @@ app.get('/', (req, res) => {
 
 app.use('/questions', questionCtrl);
 
+app.use('/answers', answerCtrl);
+
 //-------------Server Listener------//
 
 app.listen(PORT, () => console.log(`Server running of port ${PORT}`));
