@@ -12,15 +12,16 @@
        <h1>list of questions</h1> 
     </header>
     
-
-    <% if (questions.length) { %>
-        <% questions.forEach((question) => { %>
-            <a href="/questions/<%= question._id %>">
-                <h4><%= question.question %></h4>
-            </a>
-        <% } )%>
-        <% } else { %>
-            <h4>No Authors found</h4>
-    <% } %>
+    <div class="list">
+        <% if (questions.length) { %>
+            <% questions.forEach((question) => { %>
+                <a href="/questions/<%= question._id %>">
+                    <h4><%= question.question %></h4>
+                </a>
+            <% } )%>
+            <% } else { %>
+                <h4>No Authors found</h4>
+        <% } %>
+    </div>
 </body>
 </html>
