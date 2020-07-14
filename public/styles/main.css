@@ -33,6 +33,10 @@ a {
 	text-decoration: none;
 }
 
+.list {
+	font-size: 20px;
+}
+
 .editAndDeleteBtn {
 	display: flex;
 	justify-content: center;
@@ -49,6 +53,10 @@ a {
 	padding: 8px 0px;
 	margin: 10px 17%;
 	overflow-wrap: break-word;
+}
+
+.addAnswer {
+	margin-bottom: 30px;
 }
 
 #edit {
@@ -73,6 +81,18 @@ a {
 
 #username {
 	font-weight: bold;
+}
+
+#username2 {
+	display: block;
+	margin: auto;
+}
+
+#inputAnswer {
+	display: block;
+	margin: auto;
+	width: 60%;
+	height: 100px;
 }
 
 
