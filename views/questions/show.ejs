@@ -38,7 +38,8 @@
 	<h4>Answers</h4>
 
 	<% for(let i = 0; i < questions.answer.length; i++){ %>
-		<li><%=questions.answer[i].answer%></li>
+		<%=questions.answer[i].username%> <br/>
+		<%=questions.answer[i].answer%> <br/>
 	<% } %>
 
 	<h4>Write your own answer</h4>
