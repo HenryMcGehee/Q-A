@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../models');
-const { Question } = require('../models');
+
+// const { Question } = require('../models');
 const router = express.Router();
 
 
@@ -32,13 +33,32 @@ router.post('/', (req, res) => {
         
 // Show page
 router.get('/:id', (req, res) => {
-    db.Question.findById(req.params.id, (err, foundQuestion) => {
-        if (err) console.log(err)
 
-         res.render('questions/show', {
-            questions: foundQuestion
-         });
+    db.Question.findById(req.params.id)
+    .populate({path: 'answer'})
+    .exec((err, foundQuestion) => {
+        if (err) return console.log(err);
+ 
+        res.render('questions/show', {
+            questions: foundQuestion,
+            answer: foundQuestion.answer,
+        }); 
     });
+ });
+
+router.post('/:id/answer/new', (req, res) => {
+    db.Answer.create(req.body, (err, createdAnswer) => {
+        if(err) return console.log(err);
+
+        db.Question.findById(req.params.id, (err, foundQuestion) => {
+            console.log(foundQuestion, 'foundQuestion');
+
+            foundQuestion.answer.push(createdAnswer);
+            foundQuestion.save((err, savedQuestion) => {
+                res.redirect('/questions');
+            })
+        })
+    })
 });
 
 router.get('/:id/edit', (req, res) => {
