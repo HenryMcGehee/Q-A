@@ -41,7 +41,7 @@
 	</div>
 	<h4>Answers</h4>
 	
-			<% for(let i = 0; i < questions.answer.length; i++){ %>
+			<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
 	<div class= "answers">	
 			<div id ="username">
 				<%=questions.answer[i].username%> <br/>

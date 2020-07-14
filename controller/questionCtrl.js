@@ -55,7 +55,7 @@ router.post('/:id/answer/new', (req, res) => {
 
             foundQuestion.answer.push(createdAnswer);
             foundQuestion.save((err, savedQuestion) => {
-                res.redirect('/questions');
+                res.redirect(`/questions/${req.params.id}`);
             })
         })
     })
