@@ -1,7 +1,8 @@
 
 body {
-	background-color: #ffffff;
+	background-color: #E8E8E8;
 	text-align: center;
+	font-family: 'Baloo Da 2', cursive;
 }
 
 header {
@@ -17,13 +18,15 @@ header {
 
 button {
 	display: block;
-	padding: 10px;
-	margin: 10px auto;
+	padding: 3px 10px;
+	margin: 5px auto;
 	border-style: none;
 	border-radius: 8px;
 	background-color: #a4c400;
 	text-decoration: none;
 	color: white;
+	font-family: 'Baloo Da 2', cursive;
+	font-size: 20px;
 }
 
 a {
@@ -33,21 +36,43 @@ a {
 .editAndDeleteBtn {
 	display: flex;
 	justify-content: center;
+	margin: 10px;
 }
 
 .usernameAndAnswer {
 	margin: 20px  auto;
 }
 
+.question {
+	background-color: white;
+	border-radius: 8px;
+	padding: 8px 0px;
+	margin: 10px 17%;
+	overflow-wrap: break-word;
+}
+
+#edit {
+	margin: 10px;
+}
+
+#delete {
+	margin: 10px;
+}
+
 .answers {
+	text-align: left;
+	font-size: 20px;
 	background-color: #a4c400; 
 	border-radius: 8px;
-	margin: 10px;
+	margin: 10px 37%;
+	padding: 10px;
+	width: 25%;
 	color: white;
+	overflow-wrap: break-word;
 }
 
 #username {
-	display: flex;
-	justify-content: flex-start;
 	font-weight: bold;
 }
+
+

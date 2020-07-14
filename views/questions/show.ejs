@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../styles/main.css">
 	<title>Question And Answers</title>
 </head>
@@ -15,21 +16,18 @@
 		<button>New Question</button>
 	</a>
 
+	<div class="question">
+		<h2>
+			<%= questions.username%>
+		</h2>
 
-	<a href="/questions">
-		<button>Answer A Question</button>
-	</a>
-
-
-	<h3>
-		<%= questions.question %>
-	</h3>
-	
-	<p>
-		<%= questions.username%>
-	</p>
+		<h3>
+			<%= questions.question %>
+		</h3>
+	</div>
 
 	<div class = "editAndDeleteBtn">
+
 	<a href="/questions/<%= questions._id%>/edit">
 		<button id ="edit">Edit</button>
 	</a>
@@ -39,23 +37,27 @@
 		<button id="delete" type = "submit">Delete</button>
 	</form>
 	</div>
-	<h4>Answers</h4>
+
 	
-			<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
-	<div class= "answers">	
-			<div id ="username">
-				<%=questions.answer[i].username%> <br/>
+	<div class="answerContainer">
+		<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
+			<div class= "answers">	
+				<div id ="username">
+					<%=questions.answer[i].username%> <br/>
 				</div>
-				<%=questions.answer[i].answer%> <br/>
+				<div id="answer">
+					<%=questions.answer[i].answer%> <br/>
+				</div>
 			</div>
-			<% } %>
-	
+		<% } %>
+	</div>
+
 	<h4>Write your own answer</h4>
 
 	
 	<form action="/questions/<%=questions._id%>/answer/new" method="POST">
 		<label for="username">username</label>
-		<input type="text" id="username" name="username" />
+		<input type="text" id="username2" name="username" />
 
 		<label for="answer">answer</label>
 		<input type="text" id="answer" name="answer" />
