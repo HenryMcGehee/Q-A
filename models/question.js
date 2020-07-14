@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Answer = require('./answer');
 
 const QuestionSchema = new mongoose.Schema({
     username: {

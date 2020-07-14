@@ -31,13 +31,18 @@
 	</a>
 
 	<!-- 	Delete -->
-	<form style="display: inline-block;" method="POST" action= "/questions/<%= questions._id%>?_method=DELETE" ><button type = "submit">Delete</button></form>
+	<form style="display: inline-block;" method="POST" action= "/questions/<%= questions._id%>?_method=DELETE" >
+		<button type = "submit">Delete</button>
+	</form>
+
+	<h4>Answers</h4>
 
 	<% for(let i = 0; i < questions.answer.length; i++){ %>
-		<li><%=questions.answer[i].answer%></li>	
+		<li><%=questions.answer[i].answer%></li>
 	<% } %>
 
-	<form action="/questions/<%=questions._id%>" method="POST">
+	<h4>Write your own answer</h4>
+	<form action="/questions/<%=questions._id%>/answer/new" method="POST">
 		<label for="username">username</label>
 		<input type="text" id="username" name="username" />
 
