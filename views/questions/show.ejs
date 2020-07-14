@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" href="../../styles/main.css">
 	<title>Question And Answers</title>
 </head>
 <body>
@@ -17,13 +17,13 @@
 	</a>
 
 	<div class="question">
-		<h2>
-			<%= questions.username%>
-		</h2>
-
 		<h3>
-			<%= questions.question %>
+			<%= questions.username%> Asks:
 		</h3>
+
+		<h2>
+			<%= questions.question %>
+		</h2>
 	</div>
 
 	<div class = "editAndDeleteBtn">
@@ -54,17 +54,19 @@
 
 	<h4>Write your own answer</h4>
 
-	
-	<form action="/questions/<%=questions._id%>/answer/new" method="POST">
-		<label for="username">username</label>
-		<input type="text" id="username2" name="username" />
+	<div class="addAnswer">
+		<form action="/questions/<%=questions._id%>/answer/new" method="POST">
+			<label for="username">username</label>
+			<input type="text" id="username2" name="username" />
 
-		<label for="answer">answer</label>
-		<input type="text" id="answer" name="answer" />
+			<label for="answer">answer</label>
+			
 
-		<button type="submit">Add Answer</button>
-	</form>
-	
+			<textarea name="answer" id="inputAnswer" cols="30" rows="10"></textarea>
+
+			<button type="submit">Add Answer</button>
+		</form>
+	</div>
 
 	<a href="/questions"><button type= "submit">View all Questions</button></a>
 	
