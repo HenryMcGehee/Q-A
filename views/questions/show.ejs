@@ -2,56 +2,74 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../styles/main.css">
 	<title>Question And Answers</title>
 </head>
 <body>
+	<header>
+		<h1>Welcome to Q&A Show page</h1>
+	</header>
 	
-	<h1>Welcome to Q&A Show page</h1>
 
 	<a href="/questions/new">
 		<button>New Question</button>
 	</a>
 
+	<div class="question">
+		<h3>
+			<%= questions.username%> Asks:
+		</h3>
 
-	<a href="/questions">
-		<button>Answer A Question</button>
-	</a>
+		<h2>
+			<%= questions.question %>
+		</h2>
+	</div>
 
-
-	<h3>
-		<%= questions.question %>
-	</h3>
-	
-	<p>
-		<%= questions.username%>
-	</p>
+	<div class = "editAndDeleteBtn">
 
 	<a href="/questions/<%= questions._id%>/edit">
-		<button>Edit</button>
+		<button id ="edit">Edit</button>
 	</a>
 
 	<!-- 	Delete -->
 	<form style="display: inline-block;" method="POST" action= "/questions/<%= questions._id%>?_method=DELETE" >
-		<button type = "submit">Delete</button>
+		<button id="delete" type = "submit">Delete</button>
 	</form>
+	</div>
 
-	<h4>Answers</h4>
-
-	<% for(let i = 0; i < questions.answer.length; i++){ %>
-		<li><%=questions.answer[i].answer%></li>
-	<% } %>
+	
+	<div class="answerContainer">
+		<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
+			<div class= "answers">	
+				<div id ="username">
+					<%=questions.answer[i].username%> <br/>
+				</div>
+				<div id="answer">
+					<%=questions.answer[i].answer%> <br/>
+				</div>
+			</div>
+		<% } %>
+	</div>
 
 	<h4>Write your own answer</h4>
-	<form action="/questions/<%=questions._id%>/answer/new" method="POST">
-		<label for="username">username</label>
-		<input type="text" id="username" name="username" />
 
-		<label for="answer">answer</label>
-		<input type="text" id="answer" name="answer" />
+	<div class="addAnswer">
+		<form action="/questions/<%=questions._id%>/answer/new" method="POST">
+			<label for="username">username</label>
+			<input type="text" id="username2" name="username" />
 
-		<button type="submit">Add Answer</button>
+			<label for="answer">answer</label>
+			
 
-	</form>
+			<textarea name="answer" id="inputAnswer" cols="30" rows="10"></textarea>
+
+			<button type="submit">Add Answer</button>
+		</form>
+	</div>
+
+	<a href="/questions"><button type= "submit">View all Questions</button></a>
+	
 
 
 
