@@ -6,7 +6,8 @@ const PORT = process.env.PORT || 4000;
 
 const answerCtrl = require('./controller/answerCtrl');
 const questionCtrl = require('./controller/questionCtrl');
-
+const userCtrl = require('./controller.userCtrl');
+	
 // Set Engine
 app.set('view engine', 'ejs');
 
