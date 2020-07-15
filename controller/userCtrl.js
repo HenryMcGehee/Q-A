@@ -6,14 +6,14 @@ const router = express.Router();
 
 
 router.get('/login', (req, res) => {
-    res.render('/user/login');
+    res.render('user/login');
 });
 
 router.get('/profile', (req, res) => {
     db.User.findById(req.session.currentUser._id, (err, foundUser) => {
         if (err) return console.log(err);
 
-        res.render('/user/profile', {
+        res.render('user/profile', {
             user: foundUser,
         });
     })
@@ -21,7 +21,7 @@ router.get('/profile', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-    res.render('/user/register');
+    res.render('user/register');
 });
 
 //login
@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
         }
         // Create A New Session and Respond 200
         req.session.currentUser = currentUser;
-        res.redirect('/profile');
+        res.redirect('/user/profile');
       } else {
         // Respond with 400 If Passwords Do Not Match
         return res.send('Passwords do not match');
@@ -105,7 +105,7 @@ router.post('/register', (req, res) => {
           if (err) return console.log(err);
 
 
-          res.redirect('/login');
+          res.redirect('/user/login');
         });
       });
     });
@@ -120,7 +120,7 @@ router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) return console.log(err);
 
-        res.redirect('/login');
+        res.redirect('/user/login');
     });
 });
 
