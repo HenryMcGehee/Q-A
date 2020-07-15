@@ -14,4 +14,5 @@ mongoose.connect(MONGODB_URI, {
 module.exports = {
     Question: require('./question'),
     Answer: require('./answer'),
+    User: require('./user'),
 }
