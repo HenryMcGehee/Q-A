@@ -35,6 +35,7 @@ router.post('/login', (req, res) => {
   // Find User By Email Address
   db.User.findOne({email: req.body.email}, (err, foundUser) => {
     if (err) return console.log(err);
+    console.log(req.body)
     // Respond with 400 If No User Found
     if (!foundUser) {
       return res.send('No User Found');
