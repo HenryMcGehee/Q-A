@@ -18,6 +18,8 @@ app.use(express.static(`${__dirname}/public`));
 
 
 
+// ** Fix Trial 1 ** //
+
 //------------Routers-------------//
 
 app.get('/', (req, res) => {
