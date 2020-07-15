@@ -18,11 +18,17 @@ router.get('/', (req, res) =>{
 
 // Create new Question
 router.get('/new', (req, res) => {
+    console.log('req session =', req.session);
+
+    if (!req.session.currentUser) return res.redirect('/login');
+
     res.render('questions/new')
 });
 
 
 router.post('/', (req, res) => {
+    if (!req.session.currentUser) return res.redirect('/login');
+
     db.Question.create(req.body, (err, newQuestion) => {
         if (err) return console.log(err)
 

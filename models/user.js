@@ -6,10 +6,18 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        minlength: 2,
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
     },
     password: {
         type: String,
-        //require: true,
+        require: true,
+        minlength: 4,
     },
     answer: [{
         type: mongoose.Schema.Types.ObjectId,
