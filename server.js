@@ -14,7 +14,7 @@ const userCtrl = require('./controller/userCtrl');
 // Set Engine
 app.set('view engine', 'ejs');
 
-
+// log in session
 app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: false,
