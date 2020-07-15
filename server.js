@@ -28,6 +28,8 @@ app.use('/questions', questionCtrl);
 
 app.use('/answers', answerCtrl);
 
+app.use('/user', userCtrl);
+
 //-------------Server Listener------//
 
 app.listen(PORT, () => console.log(`Server running of port ${PORT}`));
