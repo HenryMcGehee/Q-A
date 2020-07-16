@@ -10,10 +10,10 @@ const AnswerSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    question: [{
+    question: {
         type: mongoose.Schema.Types.ObjectId,
         ref:'Question'
-    }],
+    },
 }, {timestamps: true});
 
 const Answer = mongoose.model('Answer', AnswerSchema);

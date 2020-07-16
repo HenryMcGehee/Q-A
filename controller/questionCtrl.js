@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 
                 newQuestion.username = (foundUser);
                 newQuestion.save((err, savedQuestion) => {
-                    console.log(savedQuestion);
+
                     res.redirect('/questions');
                 })
             })
@@ -57,8 +57,8 @@ router.get('/:id', (req, res) => {
         if (err) return console.log(err);
 
         db.Question.findById(req.params.id)
-        .populate({path: 'answer'})
         .populate({path: 'username'})
+        .populate({path: 'answer', populate: {path: 'username'}})
         
         .exec((err, foundQuestion) => {
             if (err) return console.log(err);
@@ -76,32 +76,33 @@ router.post('/:id/answer/new', (req, res) => {
     db.Answer.create(req.body, (err, createdAnswer) => {
         if(err) return console.log(err);
 
-        db.Question.findById(req.params.id, (err, foundQuestion) => {
-            console.log(foundQuestion, 'foundQuestion');
-
-            db.User.findById(req.session.currentUser._id, (err, foundUser) => {
+        
+        db.User.findById(req.session.currentUser._id, (err, foundUser) => {
+            if (err) return console.log(err);
+            
+            foundUser.answer.push(createdAnswer);
+            foundUser.save((err, savedUser) => {
                 if (err) return console.log(err);
-
-                foundUser.answer.push(createdAnswer);
-                foundUser.save((err, savedUser) => {
-                    if (err) return console.log(err);
+                
+                db.Question.findById(req.params.id, (err, foundQuestion) => {
+                        
                     
                     foundQuestion.answer.push(createdAnswer);
+                    // foundQuestion.answer.username.push(foundUser);
                     foundQuestion.save((err, savedQuestion) => {
-
-                        createdAnswer.question.push(foundQuestion);
-                        createdAnswer.save((err, savedAnswer) => {
-
+                        
+                            createdAnswer.question = (foundQuestion);
                             createdAnswer.username = (foundUser);
                             createdAnswer.save((err, savedAnswer) => {
+                                console.log(savedAnswer);
                                 
                                 res.redirect(`/questions/${req.params.id}`);
+                            
                             })
                         })
                     })
-                })
 
-            })
+                })
 
         })
     })
@@ -137,7 +138,6 @@ router.delete('/:id', (req, res) => {
         req.params.id, (err, deletedQuestion) => {
             if (err) return console.log(err)
 
-            console.log(deletedQuestion);
             res.redirect('/questions')    
         })
 })
