@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <title>Document</title>
-</head>
-<body>
     <header>
         <h1>edit page</h1> 
     </header>
+    
+<%- include('../partials/_head') %>
+
+<body>
+
    
 
     <form action="/questions/<%=questions._id%>?_method=PUT" method="POST">
