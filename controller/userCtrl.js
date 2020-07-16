@@ -10,14 +10,15 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-    db.User.findById(req.session.currentUser._id, (err, foundUser) => {
-        if (err) return console.log(err);
+    db.User.findById(req.session.currentUser._id)
+        .populate({path: 'question'})
+        .exec((err, foundUser) => {
+            if (err) return console.log(err);
 
-        res.render('user/profile', {
-            user: foundUser,
-        });
-    })
-
+            res.render('user/profile', {
+                user: foundUser,
+            });
+        })
 });
 
 router.get('/register', (req, res) => {
