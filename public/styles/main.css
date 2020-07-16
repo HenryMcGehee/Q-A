@@ -94,5 +94,9 @@ a {
 	width: 60%;
 	height: 100px;
 }
+#navbarNavDropdown #navbarDropdownMenuLink .ul .li {
+	display: flex;
+	justify-content: right;
+}
 
 
