@@ -22,6 +22,28 @@
 		<%= user.answer %> 
 	</h3>
 
+	<h2>Recent Questions</h2>
+	<% if (user.question.length) { %>
+		<% user.question.forEach((q) => { %>
+			<!-- <a href="/questions/<%= q._id %>"> -->
+				<h4><%= q[0] %></h4>
+			<!-- </a> -->
+		<% } )%>
+		<% } else { %>
+			<h4>No Questions Yet</h4>
+	<% } %>
+
+	<h2>Recent Answers</h2>
+	<% if (user.answer.length) { %>
+		<% user.answer.forEach((a) => { %>
+			<!-- <a href="/questions/<%= a._id %>"> -->
+				<h4><%= a.answer %></h4>
+			<!-- </a> -->
+		<% } )%>
+		<% } else { %>
+			<h4>No Answers Yet</h4>
+	<% } %>
+
 	<a href="/user/logout">
 		<button>Logout</button>
 	</a>

@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../models');
+const { User } = require('../models');
 
 // const { Question } = require('../models');
 const router = express.Router();
@@ -20,7 +21,7 @@ router.get('/', (req, res) =>{
 router.get('/new', (req, res) => {
     console.log('req session =', req.session);
 
-    if (!req.session.currentUser) return res.redirect('/login');
+    if (!req.session.currentUser) return res.redirect('/user/login');
 
     res.render('questions/new')
 });
@@ -32,7 +33,15 @@ router.post('/', (req, res) => {
     db.Question.create(req.body, (err, newQuestion) => {
         if (err) return console.log(err)
 
-        res.redirect('/questions');
+        db.User.findById(req.session.currentUser._id, (err, foundUser) => {
+            if (err) return console.log(err);
+
+            foundUser.question.push(newQuestion);
+            foundUser.save((err, savedUser) => {
+                res.redirect('/questions');
+            })
+        })
+
     });
 });
         
@@ -59,10 +68,21 @@ router.post('/:id/answer/new', (req, res) => {
         db.Question.findById(req.params.id, (err, foundQuestion) => {
             console.log(foundQuestion, 'foundQuestion');
 
-            foundQuestion.answer.push(createdAnswer);
-            foundQuestion.save((err, savedQuestion) => {
-                res.redirect(`/questions/${req.params.id}`);
+            db.User.findById(req.session.currentUser._id, (err, foundUser) => {
+                if (err) return console.log(err);
+
+                foundUser.answer.push(createdAnswer);
+                foundUser.save((err, savedUser) => {
+                    if (err) return console.log(err);
+                    
+                    foundQuestion.answer.push(createdAnswer);
+                    foundQuestion.save((err, savedQuestion) => {
+                        res.redirect(`/questions/${req.params.id}`);
+                    })
+                })
+
             })
+
         })
     })
 });
