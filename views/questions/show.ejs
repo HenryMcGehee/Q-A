@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../../styles/main.css">
-	<title>Question And Answers</title>
-</head>
-<body>
 	<header>
 		<h1>Welcome to Q&A Show page</h1>
 	</header>
+
+<%- include('../partials/_head') %>
+<body>
+
+
 	
 
 	<a href="/questions/new">
@@ -18,7 +14,9 @@
 
 	<div class="question">
 		<h3>
-			<%= questions.username%> Asks:
+			<a href="/user/profile/<%= questions.username._id%>">
+				<%= questions.username.username%> Asks:
+			</a>
 		</h3>
 
 		<h2>
@@ -43,7 +41,9 @@
 		<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
 			<div class= "answers">	
 				<div id ="username">
-					<%=questions.answer[i].username%> <br/>
+					<a href="/user/profile/<%= questions.answer[i].username._id%>">
+						<%=questions.answer[i].username.username%> <br/>
+					</a>
 				</div>
 				<div id="answer">
 					<%=questions.answer[i].answer%> <br/>
@@ -52,16 +52,10 @@
 		<% } %>
 	</div>
 
-	<h4>Write your own answer</h4>
-
 	<div class="addAnswer">
 		<form action="/questions/<%=questions._id%>/answer/new" method="POST">
-			<label for="username">username</label>
-			<input type="text" id="username2" name="username" />
 
-			<label for="answer">answer</label>
-			
-
+			<label for="answer">Write your own answer</label>
 			<textarea name="answer" id="inputAnswer" cols="30" rows="10"></textarea>
 
 			<button type="submit">Add Answer</button>

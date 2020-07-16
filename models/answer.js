@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
+const Question = require('./question');
 
 const AnswerSchema = new mongoose.Schema({
     username: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     answer: {
         type: String,
         require: true,
+    },
+    question: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Question'
     },
 }, {timestamps: true});
 

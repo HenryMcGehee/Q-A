@@ -1,0 +1,23 @@
+<header>
+		<h1>Create new user account</h1>
+	</header>
+<%- include('../partials/_head') %>
+<body>
+
+
+	<form action="/user/register" method="POST">
+		<label for="username">username</label>
+		<input type="text" name="username" id="username"/>
+
+		<label for="email">email</label>
+		<input type="email" name="email" id="email"/>
+
+		<label for="password">password</label>
+		<input type="password" name="password" id="password"/>
+
+		<button type="submit">Register</button>
+	
+	</form>
+	
+</body>
+</html>

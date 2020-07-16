@@ -1,0 +1,45 @@
+	<header>
+		<h1>Login</h1>
+	</header>
+<%- include('../partials/_head') %>
+<body>
+
+	
+
+	
+<!-- playing with boot strap -->
+
+<nav class="navbar navbar-light bg-light">
+  <form action= "/user/login" method="POST"class="form-inline">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input type="email" placeholder="email" name="email" id="email"/>
+
+	<input type="password" placeholder= "password" name="password" id="password"/>
+	<button type="submit">login</button>
+    </div>
+  </form>
+</nav>
+
+<!-- playing with boot strap -->
+
+
+
+
+<!--     <form action="/user/login" method="POST">
+
+		<label for="email">email</label>
+		<input type="email" name="email" id="email"/>
+
+		<label for="password">password</label>
+		<input type="password" name="password" id="password"/>
+
+		<button type="submit">login</button>
+	
+	</form> -->
+
+
+</body>
+</html>
