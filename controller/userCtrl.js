@@ -12,6 +12,7 @@ router.get('/login', (req, res) => {
 router.get('/profile', (req, res) => {
     db.User.findById(req.session.currentUser._id)
         .populate({path: 'question'})
+        .populate({path: 'answer'})
         .exec((err, foundUser) => {
             if (err) return console.log(err);
 

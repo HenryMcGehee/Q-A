@@ -14,20 +14,9 @@
 		<%= user.username %> 
 	</h3>
 
-	<h3>
-		<%= user.email %> 
-	</h3>
-
-	<h3>
-		<%= user.question[0].question %> 
-	</h3>
-
-	<%= console.log('hsadkfjhsdk'); %>
-
 	<h2>Recent Questions</h2>
 	<% if (user.question.length) { %>
 		<% user.question.forEach((q) => { %>
-			<%= console.log('hsadkfjhsdk'); %>
 			
 			<li><a href="/questions/<%=q._id%>"><%=q.question%></a></li>
 		
@@ -39,9 +28,7 @@
 	<h2>Recent Answers</h2>
 	<% if (user.answer.length) { %>
 		<% user.answer.forEach((a) => { %>
-			<!-- <a href="/questions/<%= a._id %>"> -->
-				<h4><%= a.answer %></h4>
-			<!-- </a> -->
+			<li><a href="/questions/<%=a.question%>"><%=a.answer%></a></li>
 		<% } )%>
 		<% } else { %>
 			<h4>No Answers Yet</h4>

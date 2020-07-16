@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Question = require('./question');
 
 const AnswerSchema = new mongoose.Schema({
     username: {
@@ -9,6 +10,10 @@ const AnswerSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    question: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Question'
+    }],
 }, {timestamps: true});
 
 const Answer = mongoose.model('Answer', AnswerSchema);
