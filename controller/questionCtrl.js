@@ -48,17 +48,21 @@ router.post('/', (req, res) => {
         
 // Show page
 router.get('/:id', (req, res) => {
-
-    db.Question.findById(req.params.id)
-    .populate({path: 'answer'})
-    .exec((err, foundQuestion) => {
+    db.User.findById(req.session.currentUser._id, (err, foundUser) => {
         if (err) return console.log(err);
- 
-        res.render('questions/show', {
-            questions: foundQuestion,
-            answer: foundQuestion.answer,
-        }); 
-    });
+
+        db.Question.findById(req.params.id)
+        .populate({path: 'answer'})
+        .exec((err, foundQuestion) => {
+            if (err) return console.log(err);
+    
+            res.render('questions/show', {
+                questions: foundQuestion,
+                answer: foundQuestion.answer,
+                user: foundUser,
+            }); 
+        });
+    })
  });
 
 router.post('/:id/answer/new', (req, res) => {

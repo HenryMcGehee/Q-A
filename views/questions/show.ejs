@@ -43,7 +43,7 @@
 		<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
 			<div class= "answers">	
 				<div id ="username">
-					<%=questions.answer[i].username%> <br/>
+					<%=questions.user%> <br/>
 				</div>
 				<div id="answer">
 					<%=questions.answer[i].answer%> <br/>
@@ -52,16 +52,10 @@
 		<% } %>
 	</div>
 
-	<h4>Write your own answer</h4>
-
 	<div class="addAnswer">
 		<form action="/questions/<%=questions._id%>/answer/new" method="POST">
-			<label for="username">username</label>
-			<input type="text" id="username2" name="username" />
 
-			<label for="answer">answer</label>
-			
-
+			<label for="answer">Write your own answer</label>
 			<textarea name="answer" id="inputAnswer" cols="30" rows="10"></textarea>
 
 			<button type="submit">Add Answer</button>

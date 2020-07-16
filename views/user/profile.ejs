@@ -19,16 +19,16 @@
 	</h3>
 
 	<h3>
-		<%= user.answer %> 
+		<%= user.question %> 
 	</h3>
 
 	<h2>Recent Questions</h2>
 	<% if (user.question.length) { %>
-		<% user.question.forEach((q) => { %>
-			<!-- <a href="/questions/<%= q._id %>"> -->
-				<h4><%= q[0] %></h4>
-			<!-- </a> -->
-		<% } )%>
+		<% for(let i = 0; i < user.question; i++){ %>
+			<a href="/questions/<%= user.question[i]._id %>">
+				<h4><%= user.question[i]._id.question %></h4>
+			</a>
+		<% }%>
 		<% } else { %>
 			<h4>No Questions Yet</h4>
 	<% } %>
