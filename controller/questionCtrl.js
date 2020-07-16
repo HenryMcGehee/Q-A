@@ -19,7 +19,6 @@ router.get('/', (req, res) =>{
 
 // Create new Question
 router.get('/new', (req, res) => {
-    console.log('req session =', req.session);
 
     if (!req.session.currentUser) return res.redirect('/user/login');
 
@@ -35,10 +34,16 @@ router.post('/', (req, res) => {
 
         db.User.findById(req.session.currentUser._id, (err, foundUser) => {
             if (err) return console.log(err);
-
+            
             foundUser.question.push(newQuestion);
             foundUser.save((err, savedUser) => {
-                res.redirect('/questions');
+                
+
+                newQuestion.username = (foundUser);
+                newQuestion.save((err, savedQuestion) => {
+                    console.log(savedQuestion);
+                    res.redirect('/questions');
+                })
             })
         })
 
@@ -53,6 +58,8 @@ router.get('/:id', (req, res) => {
 
         db.Question.findById(req.params.id)
         .populate({path: 'answer'})
+        .populate({path: 'username'})
+        
         .exec((err, foundQuestion) => {
             if (err) return console.log(err);
     
@@ -85,7 +92,11 @@ router.post('/:id/answer/new', (req, res) => {
                         createdAnswer.question.push(foundQuestion);
                         createdAnswer.save((err, savedAnswer) => {
 
-                            res.redirect(`/questions/${req.params.id}`);
+                            createdAnswer.username = (foundUser);
+                            createdAnswer.save((err, savedAnswer) => {
+                                
+                                res.redirect(`/questions/${req.params.id}`);
+                            })
                         })
                     })
                 })

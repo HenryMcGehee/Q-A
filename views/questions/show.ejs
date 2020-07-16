@@ -18,7 +18,9 @@
 
 	<div class="question">
 		<h3>
-			<%= questions.username%> Asks:
+			<a href="/user/profile/<%= questions.username._id%>">
+				<%= questions.username.username%> Asks:
+			</a>
 		</h3>
 
 		<h2>
@@ -43,7 +45,9 @@
 		<% for(let i = questions.answer.length -1; i >= 0; i--){ %>
 			<div class= "answers">	
 				<div id ="username">
-					<%=questions.user%> <br/>
+					<a href="/user/profile/<%= questions.username._id%>">
+						<%=questions.answer[i].username%> <br/>
+					</a>
 				</div>
 				<div id="answer">
 					<%=questions.answer[i].answer%> <br/>

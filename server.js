@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const methodOverride = require('method-override');
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,6 +17,9 @@ app.set('view engine', 'ejs');
 
 // log in session
 app.use(session({
+	store: new MongoStore({
+		url: 'mongodb://localhost:27017/question-answer' || process.env.MONGODB_URI,
+	}),
 	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false,

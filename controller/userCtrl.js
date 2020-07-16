@@ -9,13 +9,14 @@ router.get('/login', (req, res) => {
     res.render('user/login');
 });
 
-router.get('/profile', (req, res) => {
-    db.User.findById(req.session.currentUser._id)
+router.get('/profile/:id', (req, res) => {
+    db.User.findById(req.params.id)
         .populate({path: 'question'})
         .populate({path: 'answer'})
         .exec((err, foundUser) => {
             if (err) return console.log(err);
 
+            console.log(foundUser);
             res.render('user/profile', {
                 user: foundUser,
             });
@@ -56,7 +57,7 @@ router.post('/login', (req, res) => {
         }
         // Create A New Session and Respond 200
         req.session.currentUser = currentUser;
-        res.redirect('/user/profile');
+        res.redirect(`/user/profile/${currentUser._id}`);
       } else {
         // Respond with 400 If Passwords Do Not Match
         return res.send('Passwords do not match');

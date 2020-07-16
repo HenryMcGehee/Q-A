@@ -3,7 +3,7 @@ const Answer = require('./answer');
 const User = require('./user');
 
 const QuestionSchema = new mongoose.Schema({
-    user: {
+    username: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
