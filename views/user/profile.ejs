@@ -19,16 +19,19 @@
 	</h3>
 
 	<h3>
-		<%= user.question %> 
+		<%= user.question[0].question %> 
 	</h3>
+
+	<%= console.log('hsadkfjhsdk'); %>
 
 	<h2>Recent Questions</h2>
 	<% if (user.question.length) { %>
-		<% for(let i = 0; i < user.question; i++){ %>
-			<a href="/questions/<%= user.question[i]._id %>">
-				<h4><%= user.question[i]._id.question %></h4>
-			</a>
-		<% }%>
+		<% user.question.forEach((q) => { %>
+			<%= console.log('hsadkfjhsdk'); %>
+			
+			<li><a href="/questions/<%=q._id%>"><%=q.question%></a></li>
+		
+		<% }) %>
 		<% } else { %>
 			<h4>No Questions Yet</h4>
 	<% } %>
