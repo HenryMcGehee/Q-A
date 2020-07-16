@@ -53,6 +53,7 @@ router.post('/', (req, res) => {
         
 // Show page
 router.get('/:id', (req, res) => {
+    if (!req.session.currentUser) return res.redirect('/user/login');
     db.User.findById(req.session.currentUser._id, (err, foundUser) => {
         if (err) return console.log(err);
 
