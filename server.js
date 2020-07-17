@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 // log in session
 app.use(session({
 	store: new MongoStore({
-		url: 'mongodb://localhost:27017/question-answer' || process.env.MONGODB_URI,
+		url: process.env.MONGODB_URI || 'mongodb://localhost:27017/question-answer',
 	}),
 	secret: process.env.SESSION_SECRET,
 	resave: false,
