@@ -1,21 +1,40 @@
 const express = require('express');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const methodOverride = require('method-override');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+require('dotenv').config();
+
 
 const answerCtrl = require('./controller/answerCtrl');
 const questionCtrl = require('./controller/questionCtrl');
-
+const userCtrl = require('./controller/userCtrl');
+	
 // Set Engine
 app.set('view engine', 'ejs');
 
+// log in session
+app.use(session({
+	store: new MongoStore({
+		url: 'mongodb://localhost:27017/question-answer' || process.env.MONGODB_URI,
+	}),
+	secret: process.env.SESSION_SECRET,
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		maxAge: 1000 * 60 * 60 * 24 * 7 * 2
+	}
+}));
 
 app.use (methodOverride('_method'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(`${__dirname}/public`));
 
 
+
+// ** Fix Trial 1 ** //
 
 //------------Routers-------------//
 
@@ -26,6 +45,8 @@ app.get('/', (req, res) => {
 app.use('/questions', questionCtrl);
 
 app.use('/answers', answerCtrl);
+
+app.use('/user', userCtrl);
 
 //-------------Server Listener------//
 
