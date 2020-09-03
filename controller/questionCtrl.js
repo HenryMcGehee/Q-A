@@ -89,7 +89,7 @@ router.post('/:id/answer/new', (req, res) => {
                         
                     
                     foundQuestion.answer.push(createdAnswer);
-                    // foundQuestion.answer.username.push(foundUser);
+                    
                     foundQuestion.save((err, savedQuestion) => {
                         
                             createdAnswer.question = (foundQuestion);
